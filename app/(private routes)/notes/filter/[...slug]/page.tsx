@@ -1,6 +1,6 @@
 import NotesClient from "./Notes.client";
 import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
-import { fetchNotes } from "@/lib/api";
+import { fetchNotes } from "@/lib/api/clientApi";
 import { Tags } from "@/types/note";
 import { Metadata } from "next";
 
@@ -18,7 +18,7 @@ export async function generateMetadata({params}: AppProps): Promise<Metadata> {
         openGraph: {
             title: `${tag} notes`,
             description: `Notes with ${tag} tags`,
-            url: `https://08-zustand-brown.vercel.app//notes/filter/${tag}`,
+            url: `https://08-zustand-brown.vercel.app/notes/filter/${tag}`,
             images: [
                 {
                     url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
