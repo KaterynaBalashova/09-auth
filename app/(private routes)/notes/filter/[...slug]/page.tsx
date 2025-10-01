@@ -3,6 +3,7 @@ import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query
 import { fetchNotes } from "@/lib/api/clientApi";
 import { Tags } from "@/types/note";
 import { Metadata } from "next";
+// import { fetchServerNotes } from "@/lib/api/serverApi";
 
 interface AppProps {
     params: Promise<{ slug: string[] }>;

@@ -9,6 +9,7 @@ import NoteList from "@/components/NoteList/NoteList"
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useDebouncedCallback } from 'use-debounce';
 import Link from 'next/link';
+// import { fetchServerNotes } from '@/lib/api/serverApi';
 
 interface NotesClientProps {
   tag?: string; 
@@ -36,9 +37,7 @@ export default function NotesClient({tag}: NotesClientProps) {
       <header className={css.toolbar}>
         {<SearchBox text={searchQuery} onSearch={debouncedSetSearchQuery} />}
         {isSuccess && totalPages > 1 && (<Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />)}
-        {<button className={css.button}> 
-        <Link href="/notes/action/create">Create note +</Link>
-        </button>}
+        <Link href="/notes/action/create" className={css.button}>Create note +</Link>
       </header>
       {data && data.notes.length > 0 && !isLoading && <NoteList notes={data.notes} />}
     </div>

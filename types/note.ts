@@ -7,6 +7,11 @@ export interface Note {
     tag: string
 };
 
+export interface NoteHttpRespond {
+    notes: Note[],
+    totalPages: number,
+};
+
 export type Tags = "Work" | "Personal" | "Meeting" | "Shopping" | "Todo";
 
 export type NoteFormValues = {
@@ -14,3 +19,4 @@ export type NoteFormValues = {
     content: string,
     tag: Tags,
 }
+

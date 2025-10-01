@@ -1,5 +1,3 @@
-// components/AuthProvider/AuthProvider.tsx
-
 'use client';
 
 import { checkSession, getMe } from '@/lib/api/clientApi';

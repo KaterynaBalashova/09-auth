@@ -1,20 +1,7 @@
 
 import { User } from "@/types/user";
-import { Note, Tags } from "../../types/note";
+import { Note, NoteHttpRespond, Tags } from "../../types/note";
 import { nextServer } from "./api";
-
-// const myKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
-
-interface NoteHttpRespond {
-    notes: Note[],
-    totalPages: number,
-};
-
-export interface CreateNewNote {
-    title: string,
-    content: string,
-    tag?: string | undefined,
-};
 
 export const fetchNotes = async (searchQuery: string, currentPage: number, tag?: Tags | string): Promise<NoteHttpRespond> => {
     const response = await nextServer.get<NoteHttpRespond>("/notes",
@@ -31,14 +18,15 @@ export const fetchNotes = async (searchQuery: string, currentPage: number, tag?:
     return response.data;
 };
 
-export const fetchNoteById = async (noteId: string): Promise<Note> => {
-    const response = await nextServer.get<Note>(`/notes/${noteId}`);
-    return response.data;
-};
-
 export const deleteNote = async (noteId: Note["id"]): Promise<Note> => {
     const response = await nextServer.delete<Note>(`/notes/${noteId}`);
     return response.data;
+};
+
+export interface CreateNewNote {
+    title: string,
+    content: string,
+    tag?: string | undefined,
 };
 
 export const createNote = async (newTask: CreateNewNote): Promise<Note> => {
@@ -92,4 +80,9 @@ export const checkSession = async () => {
 export const getMe = async () => {
     const { data } = await nextServer.get<User>("/users/me");
     return data;
+};
+
+export const fetchNoteById = async (noteId: string): Promise<Note> => {
+    const response = await nextServer.get<Note>(`/notes/${noteId}`);
+    return response.data;
 };
